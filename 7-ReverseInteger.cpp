@@ -1,17 +1,11 @@
 class Solution {
 public:
     int reverse(int x) {
-        int sign(1);
-        if(x < 0){sign = -1; x = -x;}
-
-        int rev(0);
-        while(x > 0){
-            rev = 10 * rev + (x % 10);
-            x /= 10;
-        }
-        rev *= sign;
-
-        return rev;
-        
+        bool neg(x < 0); long y = neg ? (-1L * x) : x;
+        long res(0);
+        while(y){res *= 10; res += (y % 10); y /= 10;}
+        if((res < -(1L << 31)) || (res + 1 > (1L << 31) ) ){return 0;}
+        int ans = (neg ? -1 : 1) * res;
+        return ans;
     }
 };
