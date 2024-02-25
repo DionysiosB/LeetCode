@@ -1,14 +1,15 @@
 class Solution {
 public:
-    bool canJump(std::vector<int>& nums) {
-
-        std::vector<bool> b(nums.size(), false);
-        b[0] = true;
-        for(int p = 0; p < b.size(); p++){
-            if(!b[p]){continue;}
-            for(int q = 0; q <= nums[p]; q++){b[p + q] = true;}
+    bool canJump(vector<int>& nums) {
+        const int n = nums.size();
+        long mx(0);
+        for(long p = 0; p < n; p++){
+            if(mx < p){return false;}
+            int tmp = p + nums[p];
+            mx = (mx > tmp ? mx : tmp);
+            if(mx >= n - 1){return true;}
         }
 
-        return b.back();
+        return true;
     }
-};
+}
